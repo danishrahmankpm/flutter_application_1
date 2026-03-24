@@ -1,9 +1,15 @@
 class TodoEntity {
+  final int userId;
   final int id;
-  final String description;
-  final bool completed;
+  final String? title;
+  final bool? completed;
 
-  TodoEntity( this.id,this.description,this.completed);
+  TodoEntity({
+    required this.userId,
+    required this.id,
+    this.title,
+    this.completed,
+  });
 
 
 }

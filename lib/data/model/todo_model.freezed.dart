@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TodoModel {
 
- int get id; String get description; bool get isCompleted;
+ int get userId; int get id; String? get title; bool? get isCompleted;
 /// Create a copy of TodoModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $TodoModelCopyWith<TodoModel> get copyWith => _$TodoModelCopyWithImpl<TodoModel>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TodoModel&&(identical(other.id, id) || other.id == id)&&(identical(other.description, description) || other.description == description)&&(identical(other.isCompleted, isCompleted) || other.isCompleted == isCompleted));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TodoModel&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.isCompleted, isCompleted) || other.isCompleted == isCompleted));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,description,isCompleted);
+int get hashCode => Object.hash(runtimeType,userId,id,title,isCompleted);
 
 @override
 String toString() {
-  return 'TodoModel(id: $id, description: $description, isCompleted: $isCompleted)';
+  return 'TodoModel(userId: $userId, id: $id, title: $title, isCompleted: $isCompleted)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $TodoModelCopyWith<$Res>  {
   factory $TodoModelCopyWith(TodoModel value, $Res Function(TodoModel) _then) = _$TodoModelCopyWithImpl;
 @useResult
 $Res call({
- int id, String description, bool isCompleted
+ int userId, int id, String? title, bool? isCompleted
 });
 
 
@@ -65,12 +65,13 @@ class _$TodoModelCopyWithImpl<$Res>
 
 /// Create a copy of TodoModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? description = null,Object? isCompleted = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? userId = null,Object? id = null,Object? title = freezed,Object? isCompleted = freezed,}) {
   return _then(_self.copyWith(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
-as String,isCompleted: null == isCompleted ? _self.isCompleted : isCompleted // ignore: cast_nullable_to_non_nullable
-as bool,
+userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
+as int,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,isCompleted: freezed == isCompleted ? _self.isCompleted : isCompleted // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
 
@@ -155,10 +156,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String description,  bool isCompleted)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int userId,  int id,  String? title,  bool? isCompleted)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _TodoModel() when $default != null:
-return $default(_that.id,_that.description,_that.isCompleted);case _:
+return $default(_that.userId,_that.id,_that.title,_that.isCompleted);case _:
   return orElse();
 
 }
@@ -176,10 +177,10 @@ return $default(_that.id,_that.description,_that.isCompleted);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String description,  bool isCompleted)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int userId,  int id,  String? title,  bool? isCompleted)  $default,) {final _that = this;
 switch (_that) {
 case _TodoModel():
-return $default(_that.id,_that.description,_that.isCompleted);case _:
+return $default(_that.userId,_that.id,_that.title,_that.isCompleted);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -196,10 +197,10 @@ return $default(_that.id,_that.description,_that.isCompleted);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String description,  bool isCompleted)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int userId,  int id,  String? title,  bool? isCompleted)?  $default,) {final _that = this;
 switch (_that) {
 case _TodoModel() when $default != null:
-return $default(_that.id,_that.description,_that.isCompleted);case _:
+return $default(_that.userId,_that.id,_that.title,_that.isCompleted);case _:
   return null;
 
 }
@@ -211,12 +212,13 @@ return $default(_that.id,_that.description,_that.isCompleted);case _:
 @JsonSerializable()
 
 class _TodoModel implements TodoModel {
-  const _TodoModel({required this.id, required this.description, required this.isCompleted});
+  const _TodoModel({required this.userId, required this.id, this.title, this.isCompleted});
   factory _TodoModel.fromJson(Map<String, dynamic> json) => _$TodoModelFromJson(json);
 
+@override final  int userId;
 @override final  int id;
-@override final  String description;
-@override final  bool isCompleted;
+@override final  String? title;
+@override final  bool? isCompleted;
 
 /// Create a copy of TodoModel
 /// with the given fields replaced by the non-null parameter values.
@@ -231,16 +233,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TodoModel&&(identical(other.id, id) || other.id == id)&&(identical(other.description, description) || other.description == description)&&(identical(other.isCompleted, isCompleted) || other.isCompleted == isCompleted));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TodoModel&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.isCompleted, isCompleted) || other.isCompleted == isCompleted));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,description,isCompleted);
+int get hashCode => Object.hash(runtimeType,userId,id,title,isCompleted);
 
 @override
 String toString() {
-  return 'TodoModel(id: $id, description: $description, isCompleted: $isCompleted)';
+  return 'TodoModel(userId: $userId, id: $id, title: $title, isCompleted: $isCompleted)';
 }
 
 
@@ -251,7 +253,7 @@ abstract mixin class _$TodoModelCopyWith<$Res> implements $TodoModelCopyWith<$Re
   factory _$TodoModelCopyWith(_TodoModel value, $Res Function(_TodoModel) _then) = __$TodoModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String description, bool isCompleted
+ int userId, int id, String? title, bool? isCompleted
 });
 
 
@@ -268,12 +270,13 @@ class __$TodoModelCopyWithImpl<$Res>
 
 /// Create a copy of TodoModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? description = null,Object? isCompleted = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? userId = null,Object? id = null,Object? title = freezed,Object? isCompleted = freezed,}) {
   return _then(_TodoModel(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
-as String,isCompleted: null == isCompleted ? _self.isCompleted : isCompleted // ignore: cast_nullable_to_non_nullable
-as bool,
+userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
+as int,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,isCompleted: freezed == isCompleted ? _self.isCompleted : isCompleted // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
 

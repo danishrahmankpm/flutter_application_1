@@ -6,9 +6,10 @@ part 'todo_model.g.dart';
 @freezed
 abstract class TodoModel with _$TodoModel {
   const factory TodoModel({
+    required int userId,
     required int id,
-    required String description,
-    required bool isCompleted,
+    String? title,
+    bool? isCompleted,
   }) = _TodoModel;
 
   factory TodoModel.fromJson(Map<String, dynamic> json) =>
